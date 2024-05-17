@@ -5,6 +5,7 @@ import logging
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 
+#Parent directory where item sorting will be applied. 
 src_dir = "C:/Users/harve/Downloads"
 
 
