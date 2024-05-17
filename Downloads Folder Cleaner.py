@@ -13,13 +13,15 @@ audio_ext = [".m4a",".flac",".mp3",".wav", ".wma",".aac"]
 video_ext = [".mp4"]
 image_ext = [".jpg", ".png",".jpeg"]
 
+#Gets all available file extensions in src_dir
 def get_file_extensions(dir):
     file_ext = []
     for i in os.listdir(dir):
         if not os.path.splitext(i)[1] in file_ext:
             file_ext.append(os.path.splitext(i)[1])        
     return file_ext
-
+    
+#Cleaning function that sorts files into respective folders based on file type
 def clean(src_dir):
     ext_list= get_file_extensions(src_dir)
     for i in os.listdir(src_dir):
@@ -47,6 +49,7 @@ def clean(src_dir):
                 os.mkdir(dest_folder)
             shutil.move(os.path.join(src_dir,i),dest_folder)
 
+#Declaring event to be passed when any modifications are detected inside parent directory.
 class TheCleansing(LoggingEventHandler):
     def on_modified(self,event):
         clean(src_dir)
